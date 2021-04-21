@@ -1,0 +1,27 @@
+<launch>
+  <arg
+    name="model" />
+  <arg
+    name="gui"
+    default="False" />
+  <param
+    name="robot_description"
+    textfile="$(find aubo_description)/urdf/aubo_i3.urdf" />
+  <param
+    name="use_gui"
+    value="$(arg gui)" />
+  <node
+    name="ik_solvers_sim"
+    pkg="ik_solvers_sim"
+    type="ur_iksolver" />
+
+  <node
+    name="robot_state_publisher"
+    pkg="robot_state_publisher"
+    type="robot_state_publisher" />
+  <node
+    name="rviz"
+    pkg="rviz"
+    type="rviz"
+    args="-d $(find aubo_description)/urdf/urdf.rviz" />
+</launch>
